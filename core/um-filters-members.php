@@ -110,7 +110,6 @@
 									reverse_birthday($_REQUEST['range-birth_date_end']),
 									reverse_birthday($_REQUEST['range-birth_date_start'])
 								);
-								//print_r($value); 
 							}
 							if (in_array( $field, array('range-birth_date_start') ) || 
 								in_array( $field, array('range-birth_date_end') )  ) {
@@ -130,10 +129,6 @@
 								);
 							}
 
-							
-
-							
-
 						}
 
 					}
@@ -149,7 +144,6 @@
 		if ( count ($query_args['meta_query']) == 1 ) {
 			unset( $query_args['meta_query'] );
 		}
-		echo "<pre>"; print_r($query_args['meta_query']); echo "</pre>"; 
 		return $query_args;
 
 	}

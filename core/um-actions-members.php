@@ -52,7 +52,6 @@
 						echo '<div class="um-search-filter '. $add_class .'">'; $ultimatemember->members->show_filter( $filter ); echo '</div>';
 					
 					}
-					//echo '<div class="um-search-filter">'; $ultimatemember->members->show_filter( 'birth_date' ); echo '</div>';
 					?>
 					<div class="um-search-filter" data-role="rangeslider">
 					  <label for="range-birth_date_start">Rangeslider:</label>
