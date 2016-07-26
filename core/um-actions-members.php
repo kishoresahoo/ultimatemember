@@ -53,12 +53,14 @@
 					
 					}
 					?>
-					<div class="um-search-filter" data-role="rangeslider">
-					  <label for="range-birth_date_start">Rangeslider:</label>
-					  <input name="range-birth_date_start" id="range-birth_date_start" min="0" max="100" value="0" type="range" />
-					  <label for="range-birth_date_end">Rangeslider:</label>
-					  <input name="range-birth_date_end" id="range-birth_date_end" min="0" max="100" value="100" type="range" />
-					</div>
+					<br /><br />
+					<div id="range-slider"> </div>
+					<br />
+					<input name="range-birth_date_start" pattern="\d*"  type="number" min="0" max="100" step="1" 
+					id="input-birth-date-start">
+					<input name="range-birth_date_end"   pattern="\d*"  type="number" min="0" max="100" step="1" 
+					id="input-birth-date-end">
+					<br /><br />
 					<div class="um-clear"></div>
 					
 					<div class="um-search-submit">

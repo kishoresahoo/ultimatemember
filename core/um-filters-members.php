@@ -107,8 +107,8 @@
 								in_array( $field, array('range-birth_date_end') )  ) {
 								$field = 'birth_date';
 								$value = array(
-									reverse_birthday($_REQUEST['range-birth_date_end']),
-									reverse_birthday($_REQUEST['range-birth_date_start'])
+									reverse_birthday(number_format($_REQUEST['range-birth_date_end'])),
+									reverse_birthday(number_format($_REQUEST['range-birth_date_start']))
 								);
 							}
 							if (in_array( $field, array('range-birth_date_start') ) || 
