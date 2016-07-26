@@ -56,6 +56,7 @@
 					<br /><br />
 					<div id="range-slider"> </div>
 					<br />
+					<?php _e('Age Range','ultimatemember'); ?>
 					<input name="range-birth_date_start" pattern="\d*"  type="number" min="0" max="100" step="1" 
 					id="input-birth-date-start">
 					<input name="range-birth_date_end"   pattern="\d*"  type="number" min="0" max="100" step="1" 
