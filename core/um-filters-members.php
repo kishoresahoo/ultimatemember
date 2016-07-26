@@ -8,7 +8,6 @@
 	add_filter('um_prepare_user_query_args', 'um_search_usernames_emails', 51, 2);
 	add_filter('um_prepare_user_query_args', 'um_remove_special_users_from_list', 99, 2);
 
-
 	/***
 	***	@WP API user search
 	***/
@@ -80,16 +79,22 @@
 
 					if ( in_array( $field, array('gender') ) ) {
 						$operator = '=';
-					} elseif ( in_array( $field, array('birth_date') ) || 
-						in_array( $field, array('range-birth_date_start') ) || 
-						in_array( $field, array('range-birth_date_end') ) ) {
-						$operator = 'BETWEEN';
 					} else {
 						$operator = 'LIKE';
 					}
 
-					if ( in_array( $ultimatemember->fields->get_field_type( $field ), array('checkbox','multiselect') ) ) {
+					$arr_filter_field_types = array('checkbox','multiselect');
+					$arr_field_types = apply_filters('um_search_filter_field_types', $arr_filter_field_types );
+					
+					if ( in_array( $ultimatemember->fields->get_field_type( $field ), $arr_field_types ) ) {
 						$operator = 'LIKE';
+						if( ! empty(  $value ) ){
+							$value = serialize( strval( $value ) );
+						}
+					}
+
+					if( in_array( $ultimatemember->fields->get_field_type( $field ) ,  array('select') ) ){
+						$operator = '=';
 					}
 
 					if ( $value && $field != 'um_search' && $field != 'page_id' ) {
@@ -100,34 +105,12 @@
 								$field = 'role';
 								$operator = '=';
 							}
-							$value = trim($value);
-							
-							if (in_array( $field, array('birth_date') ) || 
-								in_array( $field, array('range-birth_date_start') ) || 
-								in_array( $field, array('range-birth_date_end') )  ) {
-								$field = 'birth_date';
-								$value = array(
-									reverse_birthday(number_format($_REQUEST['range-birth_date_end'])),
-									reverse_birthday(number_format($_REQUEST['range-birth_date_start']))
-								);
-							}
-							if (in_array( $field, array('range-birth_date_start') ) || 
-								in_array( $field, array('range-birth_date_end') )  ) {
 
-								$query_args['meta_query'][] = array(
-									'key' => $field,
-									'value' => $value,
-									'compare' => $operator,
-								);
-								
-							} else {
-
-								$query_args['meta_query'][] = array(
-									'key' => $field,
-									'value' => $value,
-									'compare' => $operator,
-								);
-							}
+							$query_args['meta_query'][] = array(
+								'key' => $field,
+								'value' => trim($value),
+								'compare' => $operator,
+							);
 
 						}
 
@@ -144,6 +127,7 @@
 		if ( count ($query_args['meta_query']) == 1 ) {
 			unset( $query_args['meta_query'] );
 		}
+
 		return $query_args;
 
 	}

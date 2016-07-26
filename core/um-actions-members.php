@@ -52,16 +52,12 @@
 						echo '<div class="um-search-filter '. $add_class .'">'; $ultimatemember->members->show_filter( $filter ); echo '</div>';
 					
 					}
+					
 					?>
-					<br /><br />
-					<div id="range-slider"> </div>
-					<br />
-					<?php _e('Age Range','ultimatemember'); ?>
-					<input name="range-birth_date_start" pattern="\d*"  type="number" min="0" max="100" step="1" 
-					id="input-birth-date-start">
-					<input name="range-birth_date_end"   pattern="\d*"  type="number" min="0" max="100" step="1" 
-					id="input-birth-date-end">
-					<br /><br />
+					<?php 
+						// Executes the action hook named 'um_members_directory_search_after' ** Added by Kishore **
+						do_action( 'um_members_directory_search_after' );
+					?>
 					<div class="um-clear"></div>
 					
 					<div class="um-search-submit">
