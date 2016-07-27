@@ -54,10 +54,6 @@
 					}
 					
 					?>
-					<?php 
-						// Executes the action hook named 'um_members_directory_search_after' ** Added by Kishore **
-						do_action( 'um_members_directory_search_after' );
-					?>
 					<div class="um-clear"></div>
 					
 					<div class="um-search-submit">
